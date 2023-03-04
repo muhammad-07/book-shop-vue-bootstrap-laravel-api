@@ -7,19 +7,24 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
-
-    public function index()
+    public function __construct()
     {
-        // $books = Book::all()->toArray();
-        // return array_reverse($books);
+        $this->middleware("can:admin")->except(["index", "show"]);
+    }
+
+    public function index(Request $request)
+    {
+        // return response()->json(["host"=>$request->root(), "env"=>$request->header(), "ref"=>$_SERVER]);
+
+        // $this->authorize('admin', Book::class);
         $books = Book::paginate(10);
         return response()->json($books);
 
     }
     public function store(Request $request)
     {
-        // TODO: ADD OTHER IELDS
-    
+        // TODO: ADD OTHER FIELDS
+
         $book = new Book([
             'isbn' => $request->input('isbn'),
             'title' => $request->input('title'),

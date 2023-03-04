@@ -18,7 +18,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        // Array ( [status] => OK [code] => 200 [total] => 10 [data] => Array ( [0] => Array ( [id] => 1 [title] => RETURNED FROM HIM. [author] => Gerardo Thiel [genre] => Expedita [description] => Alice. 'Then it wasn't very civil of you to sit down without being invited,' said the Dormouse: 'not in that case I can do without lobsters, you know. Please, Ma'am, is this New Zealand or. [isbn] => 9780897905848 [image] => http://placeimg.com/480/640/any [published] => 1982-07-22 [publisher] => Quaerat Omnis ) [1] => Arr
+
         try {
             $client = new Client(['verify'=>false]); // FALSE is for local_env If no ssl
 

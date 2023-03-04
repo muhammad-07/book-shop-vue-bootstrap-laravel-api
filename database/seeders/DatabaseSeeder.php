@@ -20,7 +20,10 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@test.com',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
-            'role' => 'admin'
+            'role' => 'admin',
+            // 'api_token' => Str::random(60),
+
+
         ]);
 
         // Getting books from API and SEED
