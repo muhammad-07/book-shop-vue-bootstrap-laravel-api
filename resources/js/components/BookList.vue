@@ -28,9 +28,9 @@
 
                                         <div class="btn-group" role="group">
                                             <router-link :to='{ name: "bookEdit", params: { id: books.id } }'
-                                                class="btn btn-success">Edit</router-link>
+                                                class="btn btn-xs btn-primary"><i class="fa fa-edit"></i></router-link>
                                             <button type="button" @click="deleteBook(books.id)"
-                                                class="btn btn-danger">Delete</button>
+                                                class="btn btn-danger"><i class="fa fa-trash"></i></button>
                                         </div>
 
                                     </td>
@@ -95,7 +95,7 @@ export default {
             }
         }
     }
-    
+
 }
 </script>
 

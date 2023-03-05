@@ -11,10 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
     <!-- MDB -->
 
-    {{-- <link rel="stylesheet" href="css/mdb.min.css" /> --}}
 
-    <!-- Custom styles -->
-    {{-- <link rel="stylesheet" href="css/style.css" /> --}}
 
     @vite([
         'resources/sass/app.scss',
@@ -43,18 +40,11 @@
         <!-- Center elements -->
         <div class="order-lg-last col-lg-5 col-sm-8 col-8">
           <div class="d-flex float-end">
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
+            <a href="{{ route('login') }}" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center">
               <i class="fas fa-user-alt m-1 me-md-2"></i>
-              <p class="d-none d-md-block mb-0">Sign in</p>
+              <p class="d-none d-md-block mb-0">{{ __('Login') }}</p>
             </a>
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="me-1 border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
-              <i class="fas fa-heart m-1 me-md-2"></i>
-              <p class="d-none d-md-block mb-0">Wishlist</p>
-            </a>
-            <a href="https://github.com/mdbootstrap/bootstrap-material-design" class="border rounded py-1 px-3 nav-link d-flex align-items-center" target="_blank">
-              <i class="fas fa-shopping-cart m-1 me-md-2"></i>
-              <p class="d-none d-md-block mb-0">My cart</p>
-            </a>
+
           </div>
         </div>
         <!-- Center elements -->
@@ -63,7 +53,7 @@
         <div class="col-lg-5 col-md-12 col-12">
           <div class="input-group float-center">
             <div class="form-outline">
-              <input type="search" id="form1" class="form-control" />
+              <input type="search" id="form1" class="form-control" style="border: solid 1px #ddd " />
               <label class="form-label" for="form1">Search</label>
             </div>
             <button type="button" class="btn btn-primary shadow-0">
@@ -98,7 +88,7 @@
 </header>
 
 <!-- sidebar + content -->
-<div id="app"><App :api_token="`{{env('APP_KEY')}}`" /></div>
+<div id="app"><App :api_tokenxxx="`{{env('APP_KEY')}}`" /></div>
 
 <!-- sidebar + content -->
 
