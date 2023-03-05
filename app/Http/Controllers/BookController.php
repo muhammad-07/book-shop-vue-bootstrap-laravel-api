@@ -26,15 +26,16 @@ class BookController extends Controller
     }
     public function search(Request $request)
     {
-
-
         $books = new Book();
-        // $books = $books->where('books.title','LIKE','%'.$term.'%')->paginate(10);//->get();
-
 
         if ($request->filled('title')) {
             $books = $books->where('books.title','LIKE','%'.$request->input('title').'%');
-
+        }
+        if ($request->filled('published_from')) {
+            $books = $books->whereDate('books.publishedAt','>=',$request->input('published_from'));
+        }
+        if ($request->filled('published_to')) {
+            $books = $books->whereDate('books.publishedAt','<=',$request->input('published_to'));
         }
         $books = $books->paginate(10);
         return response()->json($books);

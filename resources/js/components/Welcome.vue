@@ -121,37 +121,35 @@
                                         <button class="accordion-button text-dark bg-light" type="button"
                                             data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseThree"
                                             aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                            Price
+                                            Date Published
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show"
                                         aria-labelledby="headingThree">
                                         <div class="accordion-body">
-                                            <div class="range">
-                                                <input type="range" class="form-range" id="customRange1" />
-                                            </div>
+
                                             <div class="row mb-3">
                                                 <div class="col-6">
                                                     <p class="mb-0">
-                                                        Min
+                                                        From
                                                     </p>
                                                     <div class="form-outline">
-                                                        <input type="date" id="typeNumber" class="form-control" />
-                                                        <label class="form-label" for="typeNumber">$0</label>
+                                                        <input v-model="search.published_from" type="date" class="form-control" />
+                                                        <label class="form-label" ></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
                                                     <p class="mb-0">
-                                                        Max
+                                                        To
                                                     </p>
                                                     <div class="form-outline">
-                                                        <input type="date" id="typeNumber" class="form-control" />
-                                                        <label class="form-label" for="typeNumber">$1,0000</label>
+                                                        <input v-model="search.published_to" type="date" class="form-control" />
+                                                        <label class="form-label"></label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="button"
-                                                class="btn btn-white w-100 border border-secondary">apply</button>
+                                            <button type="submit"
+                                                class="btn btn-white w-100 border border-secondary">Apply Filters</button>
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +253,7 @@
                 <!-- content -->
                 <div class="col-lg-9">
                     <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-                        <strong class="d-block py-2">{{books.data.length}} Results(s) found </strong>
+                        <strong v-if="books.data && books.data.length > 0" class="d-block py-2">{{books.data.length}} Results(s) found </strong>
                         <div class="ms-auto">
                             <select class="form-select d-inline-block w-auto border pt-1">
                                 <option value="0">Best match</option>
@@ -327,7 +325,9 @@ export default {
     setup() {
         return {
 search: {
-                title: null
+                title: null,
+                published_from: null,
+                published_to: null
             }
     }
 },
@@ -344,17 +344,10 @@ search: {
         this.list()
     },
     methods: {
-        // async list(page = 1) {
-        //     await axios.get(`/api/books?page=${page}`).then(({ data }) => {
-        //         this.books = data;
 
-        //     }).catch(({ response }) => {
-        //         console.log(response)
-        //     })
-        // },
 
         async list(page = 1) {
-            // await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => {
+            // await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => { USING POST FOR MORE SECURE SEARCH
             await axios.post(`/api/books?page=${page}`, this.search).then(({ data }) => {
                 console.log(data);
                 this.books = data;
@@ -364,42 +357,9 @@ search: {
             })
         },
 
-        serialize(obj) {
-            var str = [];
-            for (var p in obj)
-                if (obj.hasOwnProperty(p)) {
-                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
-                }
-            return "&" + str.join("&");
-        },
 
-        // console.log(serialize({
-        //   foo: "hi there",
-        //   bar: "100%"
-        // }));
 
-        searchBook() {
-            alert("asd");
-            if (this.search.title) {
-                console.log(this.serialize(this.search));
-                let search_qry = this.serialize(this.search);
-                this.list(page = 1, search_qry);
-            }
-        },
 
-        // deleteBook(id) {
-        //     if (confirm("Are you sure to delete this book?")) {
-        //         this.axios
-        //             .delete(`/api/books/${id}`)
-        //             .then(response => {
-        //                 alert("Deleted successfully");
-        //                 // HERE SAVING API REQUEST TO LIST DATA AGAIN BY JUST SPLICE DELETED RECORD
-        //                 // this.list()
-        //                 let i = this.books.data.map(data => data.id).indexOf(id);
-        //                 this.books.data.splice(i, 1);
-        //             });
-        //     }
-        // }
     }
 
 }
