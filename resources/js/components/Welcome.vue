@@ -12,7 +12,7 @@
                     </button>
                     <!-- Collapsible wrapper -->
                     {{ search }}
-                    <form @submit.prevent="searchBook">
+                    <form @submit.prevent="list">
                         <div class="collapse card d-lg-block mb-5" id="navbarSupportedContent">
                             <div class="accordion" id="accordionPanelsStayOpenExample">
                                 <div class="accordion-item">
@@ -255,7 +255,7 @@
                 <!-- content -->
                 <div class="col-lg-9">
                     <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-                        <strong class="d-block py-2">32 Items found </strong>
+                        <strong class="d-block py-2">{{books.data.length}} Results(s) found </strong>
                         <div class="ms-auto">
                             <select class="form-select d-inline-block w-auto border pt-1">
                                 <option value="0">Best match</option>
@@ -353,8 +353,9 @@ search: {
         //     })
         // },
 
-        async list(page = 1, search = "&title=lol") {
-            await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => {
+        async list(page = 1) {
+            // await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => {
+            await axios.post(`/api/books?page=${page}`, this.search).then(({ data }) => {
                 console.log(data);
                 this.books = data;
 

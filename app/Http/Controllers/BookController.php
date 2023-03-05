@@ -9,7 +9,7 @@ class BookController extends Controller
 {
     public function __construct()
     {
-        $this->middleware("can:admin")->except(["index", "show"]);
+        $this->middleware("can:admin")->except(["index", "show", "search"]);
     }
 
     public function index(Request $request)
@@ -37,6 +37,7 @@ class BookController extends Controller
 
         }
         $books = $books->paginate(10);
+        return response()->json($books);
         // $book = new Book([
         //     'isbn' => $request->input('isbn'),
         //     'title' => $request->input('title'),
