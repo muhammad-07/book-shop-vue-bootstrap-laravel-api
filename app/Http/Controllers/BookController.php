@@ -14,12 +14,36 @@ class BookController extends Controller
 
     public function index(Request $request)
     {
-        // return response()->json(["host"=>$request->root(), "env"=>$request->header(), "ref"=>$_SERVER]);
+         // $this->authorize('admin', Book::class);
+        $term = 'lol';
+        // $books = new Book();
+        // $books = $books->where('books.title','LIKE','%'.$term.'%')->paginate(10);//->get();
 
-        // $this->authorize('admin', Book::class);
+        // dd($books);
         $books = Book::paginate(10);
         return response()->json($books);
 
+    }
+    public function search(Request $request)
+    {
+
+
+        $books = new Book();
+        // $books = $books->where('books.title','LIKE','%'.$term.'%')->paginate(10);//->get();
+
+
+        if ($request->filled('title')) {
+            $books = $books->where('books.title','LIKE','%'.$request->input('title').'%');
+
+        }
+        $books = $books->paginate(10);
+        // $book = new Book([
+        //     'isbn' => $request->input('isbn'),
+        //     'title' => $request->input('title'),
+        //     'author' => $request->input('author')
+        // ]);
+        // $book->save();
+        // return response()->json('Book created!');
     }
     public function store(Request $request)
     {

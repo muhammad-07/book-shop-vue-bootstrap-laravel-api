@@ -18,8 +18,8 @@ const routes = [
     {
         name: 'home',
         path: '/',
-        component: store.getters.getHome
-        // component: store.getters.getToken != null ? BookList : Welcome
+        // component: store.getters.getHome
+        component: (store.getters.getToken) ? BookList : Welcome
     },
     // home_route,
     {
@@ -70,7 +70,7 @@ const router = createRouter({
     routes,
 });
 router.beforeEach((to, from) => {
-    alert(router.currentRoute.value.name);
+    // alert(router.currentRoute.value.name);
     if(to.meta.requireAuth && !store.getters.getToken) {
         router.push('/');
     }

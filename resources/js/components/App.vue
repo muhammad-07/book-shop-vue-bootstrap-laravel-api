@@ -38,7 +38,7 @@
 
 // import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
 import state from '../auth/state';
-import router from '../routes';
+// import router from '../routes';
 export default {
     props: {
         api_token: {

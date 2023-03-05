@@ -69,7 +69,8 @@ export default {
         }
     },
     mounted() {
-        this.list()
+        if(store.getters.getToken)
+            this.list()
     },
     methods: {
         async list(page = 1) {

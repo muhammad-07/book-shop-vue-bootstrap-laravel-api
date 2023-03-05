@@ -280,7 +280,7 @@
                         <div v-for="(books, key) in books.data" :key="key" class="col-lg-4 col-md-6 col-sm-6 d-flex">
 
                             <div class="card w-100 my-2 shadow-2-strong">
-                                <img :src="'any.jfif'" class="card-img-top" />
+                                <img :src="books.image" class="card-img-top" />
                                 <div class="card-body d-flex flex-column">
                                     <!-- <div class="d-flex flex-row">
                   <h5 class="mb-1 me-1">$34,50</h5>
@@ -353,9 +353,8 @@ search: {
         //     })
         // },
 
-        async list(page = 1, search = "&title=lol") {
+        async list(page = 1, search = null) {
             await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => {
-                console.log(data);
                 this.books = data;
 
             }).catch(({ response }) => {
@@ -381,8 +380,8 @@ search: {
             alert("asd");
             if (this.search.title) {
                 console.log(this.serialize(this.search));
-                let search_qry = this.serialize(this.search);
-                this.list(page = 1, search_qry);
+                search_qry = this.serialize(this.search);
+                list(page = 1, search_qry);
             }
         },
 

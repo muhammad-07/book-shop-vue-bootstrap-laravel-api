@@ -88,7 +88,7 @@
 </header>
 
 <!-- sidebar + content -->
-<div id="app"><App :api_tokenxxx="`{{env('APP_KEY')}}`" /></div>
+<div id="app"><App /></div>
 
 <!-- sidebar + content -->
 
