@@ -25,5 +25,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/es_store', [App\Http\Controllers\BookController::class, 'es_store'])->name('es_store');
+Route::get('/es_index_all', [App\Http\Controllers\BookController::class, 'es_index_all'])->name('es_index_all');
 
 Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

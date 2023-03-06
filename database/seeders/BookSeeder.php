@@ -3,14 +3,19 @@
 namespace Database\Seeders;
 
 use App\Models\Book;
+use Elastic\Elasticsearch\ClientBuilder;
+use Elastic\Elasticsearch\Exception\ClientResponseException;
+use Elastic\Elasticsearch\Exception\ServerResponseException;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Console\Concerns;
+
 
 class BookSeeder extends Seeder
 {
+    use Concerns\InteractsWithIO;
     /**
      * Run the database seeds.
      *
@@ -20,13 +25,13 @@ class BookSeeder extends Seeder
     {
 
         try {
-            $client = new Client(['verify'=>false]); // FALSE is for local_env If no ssl
+            $client = new Client(['verify' => false]); // FALSE is for local_env If no ssl
 
-            $Query = $client->get('https://fakerapi.it/api/v1/books?_quantity=10');
+            $Query = $client->get('https://fakerapi.it/api/v1/books?_quantity=100');
             $books_body = $Query->getBody();
             $books_data = json_decode($books_body, true);
         } catch (ClientException $e) {
-            dd($e);
+            $this->info($e->getMessage());
         }
 
         if ($books_data["data"]) {
@@ -44,10 +49,13 @@ class BookSeeder extends Seeder
                 // Book::create($books);
             }
             Book::insert($books);
-        }
-        else {
-            print_r("No data found");
-            \Log::debug("No data found");
+
+
+            // INDEX TO ES
+            // MOVED TO COMMAND INDEX:BOOKS
+
+        } else {
+            $this->info("No data received from fakerapi");
         }
     }
 }

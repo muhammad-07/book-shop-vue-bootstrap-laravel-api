@@ -134,8 +134,9 @@
                                                         From
                                                     </p>
                                                     <div class="form-outline">
-                                                        <input v-model="search.published_from" type="date" class="form-control" />
-                                                        <label class="form-label" ></label>
+                                                        <input v-model="search.published_from" type="date"
+                                                            class="form-control" />
+                                                        <label class="form-label"></label>
                                                     </div>
                                                 </div>
                                                 <div class="col-6">
@@ -143,13 +144,14 @@
                                                         To
                                                     </p>
                                                     <div class="form-outline">
-                                                        <input v-model="search.published_to" type="date" class="form-control" />
+                                                        <input v-model="search.published_to" type="date"
+                                                            class="form-control" />
                                                         <label class="form-label"></label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button type="submit"
-                                                class="btn btn-white w-100 border border-secondary">Apply Filters</button>
+                                            <button type="submit" class="btn btn-white w-100 border border-secondary">Apply
+                                                Filters</button>
                                         </div>
                                     </div>
                                 </div>
@@ -253,7 +255,8 @@
                 <!-- content -->
                 <div class="col-lg-9">
                     <header class="d-sm-flex align-items-center border-bottom mb-4 pb-3">
-                        <strong v-if="books.data && books.data.length > 0" class="d-block py-2">{{books.data.length}} Results(s) found </strong>
+                        <strong v-if="books.data && books.data.length > 0" class="d-block py-2">{{ books.data.length }}
+                            Results(s) found </strong>
                         <div class="ms-auto">
                             <select class="form-select d-inline-block w-auto border pt-1">
                                 <option value="0">Best match</option>
@@ -284,10 +287,10 @@
                   <h5 class="mb-1 me-1">$34,50</h5>
                   <span class="text-muted">{{books.author}}</span>
                 </div> -->
-                                    <p class="card-text"><router-link :to='{ name: "book", params: { id: books.id } }'
-                                            >{{ books.title }} </router-link><br /><small
-                                            class="text-muted"> Author: {{ books.author }}</small> <span
-                                            class="badge badge-info badge-rounded">{{ books.genre }}</span></p>
+                                    <p class="card-text"><router-link :to='{ name: "book", params: { id: books.id } }'>{{
+                                        books.title }} </router-link><br /><small class="text-muted"> Author: {{
+        books.author }}</small> <span class="badge badge-info badge-rounded">{{
+        books.genre }}</span></p>
                                     <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
 
                                         <router-link :to='{ name: "book", params: { id: books.id } }'
@@ -324,13 +327,13 @@ export default {
     },
     setup() {
         return {
-search: {
+            search: {
                 title: null,
                 published_from: null,
                 published_to: null
             }
-    }
-},
+        }
+    },
     data() {
         return {
             books: {
