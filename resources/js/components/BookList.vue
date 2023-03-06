@@ -54,6 +54,7 @@
 <script>
 import axios from "axios";
 import { Bootstrap5Pagination } from 'laravel-vue-pagination';
+import store from '../auth/state.js';
 export default {
     name: "BookList",
     components: {
