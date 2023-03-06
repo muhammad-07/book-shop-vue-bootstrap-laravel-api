@@ -23,7 +23,7 @@
 </head>
 <body>
     <!--Main Navigation-->
-<header>
+{{-- <header>
   <!-- Jumbotron -->
   <div class="p-3 text-center bg-white border-bottom">
     <div class="container">
@@ -85,7 +85,7 @@
     </div>
   </div>
   <!-- Heading -->
-</header>
+</header> --}}
 
 <!-- sidebar + content -->
 <div id="app"><App /></div>
@@ -102,11 +102,11 @@
         <!-- Grid column -->
         <div class="col-12 col-lg-3 col-sm-12 mb-2">
           <!-- Content -->
-          <a href="https://mdbootstrap.com/" target="_blank" class="text-white h2">
-            MDB
+          <a href="" target="_blank" class="text-white h2">
+            Book Store
           </a>
           <p class="mt-1 text-white">
-            © 2023 Copyright: MDBootstrap.com
+            © 2023 Copyright: Muhammad B.
           </p>
         </div>
         <!-- Grid column -->

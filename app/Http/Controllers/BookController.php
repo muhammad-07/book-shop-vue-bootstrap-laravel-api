@@ -139,14 +139,14 @@ class BookController extends Controller
             $has_search = true;
             $must_match[] = ['match' => ['title' => $request->input('title')]];
         }
-        // if ($request->filled('genre')) {
-        //     $has_search = true;
-        //     $must_match[] = ['match' => ['genre' => $request->input('genre')]];
-        // }
-        // if ($request->filled('author')) {
-        //     $has_search = true;
-        //     $must_match[] = ['match' => ['author' => $request->input('author')]];
-        // }
+        if ($request->filled('genre')) {
+            $has_search = true;
+            $must_match[] = ['match' => ['genre' => $request->input('genre')]];
+        }
+        if ($request->filled('author')) {
+            $has_search = true;
+            $must_match[] = ['match' => ['author' => $request->input('author')]];
+        }
         if ($request->filled('published_from')) {
             $has_search = true;
             $body['query']["bool"]["filter"]['range']['publishedAt']['gte'] = $request->input('published_from');//date('Y-m-d', strtotime($request->input('published_to')));

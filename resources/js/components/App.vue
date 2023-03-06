@@ -2,7 +2,7 @@
     <main>
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
             <div class="container-fluid">
-                <router-link to="/" class="navbar-brand" href="#"> The BookStore {{ $store.state.token }}</router-link>
+                <router-link to="/" class="navbar-brand" href="#"> The BookStore</router-link>
                 <div class="collapse navbar-collapse justify-content-end">
                     <div class="navbar-nav">
 
@@ -34,9 +34,7 @@
 </template>
 
 <script>
-// import { Store } from 'vuex';
 
-// import { mapState, mapMutations, mapActions, mapGetters } from 'vuex';
 import state from '../auth/state';
 // import router from '../routes';
 export default {
@@ -48,18 +46,14 @@ export default {
     },
 
 
-    //   computed: {
-    //     ...mapState(['count', 'isLoggedIn', 'user', 'token']),
-    //   },
+
     methods: {
         logout() {
             state.dispatch('setToken', null);
             window.location.href = "/logout";
             // router.push('/');
         }
-        // ...mapMutations(['increment', 'decrement', 'login', 'logout']),
-        // ...mapActions(['increment', 'decrement', 'login', 'logout', 'setToken']),
-        // ...mapGetters(['getToken'])
+
     },
     mounted() {
         state.dispatch('setToken', this.api_token);

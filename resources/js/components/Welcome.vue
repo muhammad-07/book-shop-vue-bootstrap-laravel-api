@@ -21,7 +21,7 @@
                                             <div class="form-outline">
                                                 <input v-model="search.title" type="search" id="search" class="form-control"
                                                     style="border: solid 1px #ddd ">
-                                                <label class="form-label" for="search">Search</label>
+                                                <label class="form-label" for="search">Search Book Name</label>
                                             </div>
                                             <button type="submit" class="btn btn-primary shadow-0">
                                                 <i class="fas fa-search"></i>
@@ -36,57 +36,36 @@
                                         <button class="accordion-button text-dark bg-light" type="button"
                                             data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseTwo"
                                             aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
-                                            Brands
+                                            Genre
                                         </button>
                                     </h2>
                                     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
                                         aria-labelledby="headingTwo">
                                         <div class="accordion-body">
-                                            <div>
-                                                <!-- Checked checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckChecked1" checked />
-                                                    <label class="form-check-label" for="flexCheckChecked1">Mercedes</label>
-                                                    <span class="badge badge-secondary float-end">120</span>
-                                                </div>
-                                                <!-- Checked checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckChecked2" checked />
-                                                    <label class="form-check-label" for="flexCheckChecked2">Toyota</label>
-                                                    <span class="badge badge-secondary float-end">15</span>
-                                                </div>
-                                                <!-- Checked checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckChecked3" checked />
-                                                    <label class="form-check-label"
-                                                        for="flexCheckChecked3">Mitsubishi</label>
-                                                    <span class="badge badge-secondary float-end">35</span>
-                                                </div>
-                                                <!-- Checked checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckChecked4" checked />
-                                                    <label class="form-check-label" for="flexCheckChecked4">Nissan</label>
-                                                    <span class="badge badge-secondary float-end">89</span>
-                                                </div>
-                                                <!-- Default checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault" />
-                                                    <label class="form-check-label" for="flexCheckDefault">Honda</label>
-                                                    <span class="badge badge-secondary float-end">30</span>
-                                                </div>
-                                                <!-- Default checkbox -->
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value=""
-                                                        id="flexCheckDefault" />
-                                                    <label class="form-check-label" for="flexCheckDefault">Suzuki</label>
-                                                    <span class="badge badge-secondary float-end">30</span>
-                                                </div>
-                                            </div>
+                                            <div class="">
+                                                        <input v-model="search.genre" type="text"
+                                                            class="form-control" placeholder="genre" />
+                                                        <label class="form-label"></label>
+                                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button text-dark bg-light" type="button"
+                                            data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseTwo"
+                                            aria-expanded="true" aria-controls="panelsStayOpen-collapseTwo">
+                                            Author
+                                        </button>
+                                    </h2>
+                                    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingTwo">
+                                        <div class="accordion-body">
+                                            <div class="">
+                                                        <input v-model="search.author" type="text"
+                                                            class="form-control" placeholder="author" />
+                                                        <label class="form-label"></label>
+                                                    </div>
                                         </div>
                                     </div>
                                 </div>
@@ -129,98 +108,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button text-dark bg-light" type="button"
-                                            data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseFour"
-                                            aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                                            Size
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingThree">
-                                        <div class="accordion-body">
-                                            <input type="checkbox" class="btn-check border justify-content-center"
-                                                id="btn-check1" checked autocomplete="off" />
-                                            <label class="btn btn-white mb-1 px-1" style="width: 60px;"
-                                                for="btn-check1">XS</label>
-                                            <input type="checkbox" class="btn-check border justify-content-center"
-                                                id="btn-check2" checked autocomplete="off" />
-                                            <label class="btn btn-white mb-1 px-1" style="width: 60px;"
-                                                for="btn-check2">SM</label>
-                                            <input type="checkbox" class="btn-check border justify-content-center"
-                                                id="btn-check3" checked autocomplete="off" />
-                                            <label class="btn btn-white mb-1 px-1" style="width: 60px;"
-                                                for="btn-check3">LG</label>
-                                            <input type="checkbox" class="btn-check border justify-content-center"
-                                                id="btn-check4" checked autocomplete="off" />
-                                            <label class="btn btn-white mb-1 px-1" style="width: 60px;"
-                                                for="btn-check4">XXL</label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="headingThree">
-                                        <button class="accordion-button text-dark bg-light" type="button"
-                                            data-mdb-toggle="collapse" data-mdb-target="#panelsStayOpen-collapseFive"
-                                            aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                                            Ratings
-                                        </button>
-                                    </h2>
-                                    <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show"
-                                        aria-labelledby="headingThree">
-                                        <div class="accordion-body">
-                                            <!-- Default checkbox -->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault" checked />
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-warning"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Default checkbox -->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault" checked />
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i>
-                                                    <i class="fas fa-star text-secondary"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Default checkbox -->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault" checked />
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-secondary"></i>
-                                                    <i class="fas fa-star text-secondary"></i>
-                                                </label>
-                                            </div>
-                                            <!-- Default checkbox -->
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value=""
-                                                    id="flexCheckDefault" checked />
-                                                <label class="form-check-label" for="flexCheckDefault">
-                                                    <i class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-warning"></i><i
-                                                        class="fas fa-star text-secondary"></i><i
-                                                        class="fas fa-star text-secondary"></i>
-                                                    <i class="fas fa-star text-secondary"></i>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
                     </form>
@@ -311,7 +199,10 @@ export default {
             search: {
                 title: null,
                 published_from: null,
-                published_to: null
+                published_to: null,
+                genre: null,
+                author: null
+
             }
         }
     },
