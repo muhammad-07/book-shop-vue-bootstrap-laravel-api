@@ -11,12 +11,10 @@ use Elastic\Elasticsearch\Exception\ServerResponseException;
 
 class BookController extends Controller
 {
-    protected $index, $client, $page_size;
+    protected $index, $client;
     public function __construct()
     {
         $this->index = "index";
-        $this->es_connect();
-        $this->page_size = 10;
         $this->middleware("can:admin")->except(["index", "show", "search", "es_connect", "es_index", "es_search", "es_store", "es_index_all"]);
     }
 
@@ -44,7 +42,7 @@ class BookController extends Controller
 
     public function es_index_all()
     {
-
+        $this->es_connect();
         $posts = Book::all(); //limit(2)->get();
         $indexed = [];
         foreach ($posts as $post) {
@@ -104,68 +102,12 @@ class BookController extends Controller
 
         return ($response->asArray());
     }
-    public function es_search(Request $request)
+    public function es_search($post)
     {
-        $must_match = [];
-        $has_search = false;
-        $body = [];
-        // $body = [
-        //     'query' =>
-        //     [
-        //         'bool' =>
-        //         [
-        //             'must' => [
-        //                 [
-        //                     'match' => [
-        //                         'title' => '',
-        //                     ],
-        //                     'match' => [
-        //                         'genre' => 'Labore'
-        //                     ]
-        //                 ]
-        //             ],
-        //             'filter' => [
-        //                 'range' => [
-        //                     'publishedAt' => [
-        //                         'gte' => '1994-12-07',
-        //                         "lte" => '2016-06-13'
-        //                     ]
-        //                 ],
-        //             ]
-        //         ]
-        //     ]
-        // ];
-        if ($request->filled('title')) {
-            $has_search = true;
-            $must_match[] = ['match' => ['title' => $request->input('title')]];
-        }
-        // if ($request->filled('genre')) {
-        //     $has_search = true;
-        //     $must_match[] = ['match' => ['genre' => $request->input('genre')]];
-        // }
-        // if ($request->filled('author')) {
-        //     $has_search = true;
-        //     $must_match[] = ['match' => ['author' => $request->input('author')]];
-        // }
-        if ($request->filled('published_from')) {
-            $has_search = true;
-            $body['query']["bool"]["filter"]['range']['publishedAt']['gte'] = $request->input('published_from');//date('Y-m-d', strtotime($request->input('published_to')));
-        }
-        if ($request->filled('published_to')) {
-            $has_search = true;
-            $body['query']["bool"]["filter"]['range']['publishedAt']['lte'] = $request->input('published_to');
-        }
-
-
-        if($has_search === true)
-            $body['query']["bool"]["must"] = $must_match;
-
-
         $params = [
             'index' => $this->index,
-            "size"  => $this->page_size,
-            "from"  => ($this->page_size * (int)$request->input('page')),
-            'body'  => $has_search === true ? $body : []
+            "size"=> 20,
+            "from"=>20
             // 'body'  => [
             //     // "sort" =>  [
             //     //     "_id" => "asc",
@@ -208,11 +150,13 @@ class BookController extends Controller
             //     ]
             // ]
         ];
-        return $this->client->search($params);
+        $response = $this->client->search($params);
+        return $response->asArray();
+        // printf("Total docs: %d\n", $response['hits']['total']['value']);
+        // printf("Max score : %.4f\n", $response['hits']['max_score']);
+        // printf("Took      : %d ms\n", $response['took']);
 
-
-
-        // return $body; // documents
+        // print_r($response['hits']['hits']); // documents
     }
     public function es_delete($post)
     {
@@ -233,21 +177,26 @@ class BookController extends Controller
     }
     public function search(Request $request)
     {
-        return $this->es_search($request);
-        // DB
-        // $books = new Book();
-        // if ($request->filled('title')) {
-        //     $books = $books->where('books.title', 'LIKE', '%' . $request->input('title') . '%');
-        // }
-        // if ($request->filled('published_from')) {
-        //     $books = $books->whereDate('books.publishedAt', '>=', $request->input('published_from'));
-        // }
-        // if ($request->filled('published_to')) {
-        //     $books = $books->whereDate('books.publishedAt', '<=', $request->input('published_to'));
-        // }
-        // $books = $books->paginate(10);
-        // return response()->json($books);
+        $books = new Book();
 
+        if ($request->filled('title')) {
+            $books = $books->where('books.title', 'LIKE', '%' . $request->input('title') . '%');
+        }
+        if ($request->filled('published_from')) {
+            $books = $books->whereDate('books.publishedAt', '>=', $request->input('published_from'));
+        }
+        if ($request->filled('published_to')) {
+            $books = $books->whereDate('books.publishedAt', '<=', $request->input('published_to'));
+        }
+        $books = $books->paginate(10);
+        return response()->json($books);
+        // $book = new Book([
+        //     'isbn' => $request->input('isbn'),
+        //     'title' => $request->input('title'),
+        //     'author' => $request->input('author')
+        // ]);
+        // $book->save();
+        // return response()->json('Book created!');
     }
     public function es_store(Request $request)
     {
