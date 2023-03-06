@@ -109,32 +109,7 @@ class BookController extends Controller
         $must_match = [];
         $has_search = false;
         $body = [];
-        // $body = [
-        //     'query' =>
-        //     [
-        //         'bool' =>
-        //         [
-        //             'must' => [
-        //                 [
-        //                     'match' => [
-        //                         'title' => '',
-        //                     ],
-        //                     'match' => [
-        //                         'genre' => 'Labore'
-        //                     ]
-        //                 ]
-        //             ],
-        //             'filter' => [
-        //                 'range' => [
-        //                     'publishedAt' => [
-        //                         'gte' => '1994-12-07',
-        //                         "lte" => '2016-06-13'
-        //                     ]
-        //                 ],
-        //             ]
-        //         ]
-        //     ]
-        // ];
+       
         if ($request->filled('title')) {
             $has_search = true;
             $must_match[] = ['match' => ['title' => $request->input('title')]];
@@ -166,53 +141,9 @@ class BookController extends Controller
             "size"  => $this->page_size,
             "from"  => ($this->page_size * (int)$request->input('page')),
             'body'  => $has_search === true ? $body : []
-            // 'body'  => [
-            //     // "sort" =>  [
-            //     //     "_id" => "asc",
-            //     // ],
-            //     'query' => [
-            //         // 'match' => [
-            //         //     // '_id' => 136
-            //         //     'title' => 'was'
-            //         // ],
 
-            //         'bool' => [
-            //             'must' => [
-            //                 [
-            //                     'match' => [
-            //                         'title' => 'was',
-
-            //                     ],
-            //                     // 'match' => [
-            //                     //     'genre' => 'Sit',
-            //                     // ],
-            //                 ]
-            //             ],
-            //             'filter' => [
-            //                 // [
-            //                 //     'term' => [
-            //                 //         'genre' => 'Sit',
-            //                 //     ],
-            //                 // ],
-            //                 [
-            //                     'range' => [
-            //                         'publishedAt' => [
-            //                             'gte' => '1994-12-07',
-            //                             "lte" => '2016-06-13'
-            //                         ],
-            //                     ],
-            //                 ],
-            //             ],
-            //         ],
-
-            //     ]
-            // ]
         ];
         return $this->client->search($params);
-
-
-
-        // return $body; // documents
     }
     public function es_delete($post)
     {
@@ -234,7 +165,7 @@ class BookController extends Controller
     public function search(Request $request)
     {
         return $this->es_search($request);
-        // DB
+        // LARAVEL SEARCH
         // $books = new Book();
         // if ($request->filled('title')) {
         //     $books = $books->where('books.title', 'LIKE', '%' . $request->input('title') . '%');
@@ -249,41 +180,39 @@ class BookController extends Controller
         // return response()->json($books);
 
     }
-    public function es_store(Request $request)
-    {
-        // TODO: ADD OTHER FIELDS
+    // public function es_store(Request $request)
+    // {
+    //     // TODO: ADD OTHER FIELDS
 
-        $book = new Book([
-            'isbn' => time(),
-            'title' => 'abc',
-            'author' => 'abc',
-        ]);
-        $book->save();
-        $this->es_connect();
+    //     $book = new Book([
+    //         'isbn' => time(),
+    //         'title' => 'abc',
+    //         'author' => 'abc',
+    //     ]);
+    //     $book->save();
+    //     $this->es_connect();
 
-        // $es_response = $this->es_index($book);
-        $es_response1 = $this->es_search($book = 1);
-        // return $es_response2 = $this->es_delete($book=1);
-        return response()->json([
-            // 'index' => $es_response,
-            'src' => $es_response1,
-            //     'del'=>$es_response2
-        ]);
-    }
+    //     // $es_response = $this->es_index($book);
+    //     $es_response1 = $this->es_search($book = 1);
+    //     // return $es_response2 = $this->es_delete($book=1);
+    //     return response()->json([
+    //         // 'index' => $es_response,
+    //         'src' => $es_response1,
+    //         //     'del'=>$es_response2
+    //     ]);
+    // }
     public function store(Request $request)
     {
-        // TODO: ADD OTHER FIELDS
+
 
         $book = new Book([
             'isbn' => $request->input('isbn'),
             'title' => $request->input('title'),
             'author' => $request->input('author'),
-
-            // 'genre' => $request->input('genre'),
-            // 'image' => $request->input('image'),
-            // 'publishedAt' => $request->input('published'),
-            // 'publisher'   => $request->input('publisher'),
-            // 'description' => $request->input('description'),
+            'genre' => $request->input('genre'),
+            'publishedAt' => $request->input('published'),
+            'publisher'   => $request->input('publisher'),
+            'description' => $request->input('description')
         ]);
         $book->save();
         // $client = $this->es_connect();

@@ -47,18 +47,4 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    // protected function sendLoginResponse(Request $request)
-    // {
-    //     $request->session()->regenerate();
-
-    //     $this->clearLoginAttempts($request);
-
-    //     if ($response = $this->authenticated($request, $this->guard()->user())) {
-    //         return $response;
-    //     }
-
-    //     return $request->wantsJson()
-    //                 ? new JsonResponse([], 204) // :dd($this->guard()->user());
-    //                 : redirect()->intended($this->redirectPath());//->with(['my_token'=>"adsad"]);
-    // }
 }

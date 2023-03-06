@@ -1,6 +1,6 @@
 <template>
     <div class="row">
-        <div class="col-12 mb-2 text-end">
+        <div v-if="$store.getters.getToken" class="col-12 mb-2 text-end">
             <router-link :to='{ name: "bookCreate" }' class="btn btn-primary">Create</router-link>
         </div>
         <div class="col-12">
@@ -38,7 +38,7 @@
                             </tbody>
                             <tbody v-else>
                                 <tr>
-                                    <td colspan="4" align="center">No Books Found.</td>
+                                    <td colspan="4" align="center">No Books Found for you, Please login as admin to add some books.</td>
                                 </tr>
                             </tbody>
                         </table>

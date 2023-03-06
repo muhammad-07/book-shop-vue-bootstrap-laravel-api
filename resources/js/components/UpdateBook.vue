@@ -1,6 +1,6 @@
 <template>
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-6">
             <div class="card">
                 <div class="card-header">
                     <h4>Update Book</h4>
@@ -12,6 +12,36 @@
                                 <div class="form-group">
                                     <label>Title</label>
                                     <input type="text" class="form-control" v-model="book.title">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>ISBN</label>
+                                    <input type="text" class="form-control" v-model="book.isbn">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Author</label>
+                                    <input type="text" class="form-control" v-model="book.author">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Genre</label>
+                                    <input type="text" class="form-control" v-model="book.genre">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Publisher</label>
+                                    <input type="text" class="form-control" v-model="book.publisher">
+                                </div>
+                            </div>
+                            <div class="col-12 mb-2">
+                                <div class="form-group">
+                                    <label>Published Date</label>
+                                    <input type="date" class="form-control" v-model="book.published">
                                 </div>
                             </div>
                             <div class="col-12 mb-2">
@@ -39,6 +69,12 @@ export default {
             book:{
                 title:"",
                 description:"",
+                title:"",
+                author:"",
+                isbn:"",
+                genre:"",
+                published:null,
+                publisher:"",
                 _method:"patch"
             }
         }
@@ -49,17 +85,19 @@ export default {
     methods:{
         async showBook(){
             await this.axios.get(`/api/books/${this.$route.params.id}`).then(response=>{
-                const { title, description } = response.data
-                this.book.title = title
-                this.book.description = description
-                
+                console.log(response);
+                this.book = response.data;
+                this.book.published = response.data.publishedAt;
+                this.book._method = "patch"
+
             }).catch(error=>{
                 console.log(error)
             })
         },
         async update(){
             await this.axios.post(`/api/books/${this.$route.params.id}`,this.book).then(response=>{
-                this.$router.push({name:"books"})
+                // this.$router.push({name:"books"});
+                console.log(response);
             }).catch(error=>{
                 console.log(error)
             })
