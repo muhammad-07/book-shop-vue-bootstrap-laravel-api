@@ -116,13 +116,13 @@ php artisan index:books
 
 You can email me [here](mailto:muhammad.begawala@gmail.com) for any inquiery, suggestion or contribution
 
-Please use [Github](https://github.com/muhammad-07/book-shop-vue-bootstrap-laravel-api) for reporting bugs, 
+Please use [Github](https://github.com/muhammad-07/elasticsearch-book-shop-vue-bootstrap-laravel-api) for reporting bugs, 
 and making comments or suggestions.
  
 
 ## Copyright and License
 
-[laravel-vue-book-shop-elasticsearch](https://github.com/muhammad-07/book-shop-vue-bootstrap-laravel-api)
+[laravel-vue-book-shop-elasticsearch](https://github.com/muhammad-07/elasticsearch-book-shop-vue-bootstrap-laravel-api)
 was written by [Muhammad B](mailto:muhammad.begawala@gmail.com) and is released under the 
 [MIT License](LICENSE.md).
 
