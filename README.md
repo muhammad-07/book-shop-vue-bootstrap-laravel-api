@@ -5,6 +5,7 @@
 ## About Laravel Vue Book store using Elasticsearch
 
 This is a web headless application, to demonstrate use of Elastic Search using Vue and Bootstrap as front-end and Laravel as Backend
+[FEATURE DEMO VIDEO](https://app.usebubbles.com/MJys3HXJgKP634R5F8yZF/elastic-search-book-store-using-laravel-vue-bootstrap)
 
 ## Requirements
 
