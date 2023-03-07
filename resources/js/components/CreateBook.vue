@@ -82,7 +82,7 @@ export default {
             await this.axios.post('/api/books',this.book).then(response=>{
                 console.log(response);
                 alert("Book has been added");
-                // this.$router.push({name:"books"})
+                this.$router.push({name:"books"})
             }).catch(error=>{
                 console.log(error)
             })

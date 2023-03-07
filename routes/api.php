@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware('api')->group(function () {
     Route::resource('books', BookController::class);
-    Route::post('books', [BookController::class, 'search']);
+    Route::post('/books/list', [BookController::class, 'search']);
 });

@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Book List View</h4>
+                    <h4>Book List View </h4>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -77,7 +77,7 @@ export default {
         async list(page = 1) {
             await axios.get(`/api/books?page=${page}`).then(({ data }) => {
                 this.books = data;
-
+                console.log(data);
             }).catch(({ response }) => {
                 console.log(response)
             })

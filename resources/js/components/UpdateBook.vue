@@ -96,8 +96,8 @@ export default {
         },
         async update(){
             await this.axios.post(`/api/books/${this.$route.params.id}`,this.book).then(response=>{
-                // this.$router.push({name:"books"});
-                console.log(response);
+                this.$router.push({name:"books"});
+                // console.log(response);
             }).catch(error=>{
                 console.log(error)
             })

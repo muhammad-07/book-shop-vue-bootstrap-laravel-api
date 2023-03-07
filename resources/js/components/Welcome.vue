@@ -223,7 +223,7 @@ export default {
 
         async list(page = 1) {
             // await axios.get(`/api/books?page=${page}${search}`).then(({ data }) => { USING POST FOR SAFE SEARCH
-            await axios.post(`/api/books?page=${page}`, this.search).then(({ data }) => {
+            await axios.post(`/api/books/list?page=${page}`, this.search).then(({ data }) => {
                 console.log(data);
                 this.books = data.hits;
 
