@@ -88,7 +88,7 @@
                                                     </p>
                                                     <div class="form-outline">
                                                         <input v-model="search.published_from" type="date"
-                                                            class="form-control" />
+                                                            class="form-control p-0" />
                                                         <label class="form-label"></label>
                                                     </div>
                                                 </div>
@@ -98,7 +98,7 @@
                                                     </p>
                                                     <div class="form-outline">
                                                         <input v-model="search.published_to" type="date"
-                                                            class="form-control" />
+                                                            class="form-control p-0" />
                                                         <label class="form-label"></label>
                                                     </div>
                                                 </div>

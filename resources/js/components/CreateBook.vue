@@ -44,12 +44,7 @@
                                     <input type="date" class="form-control" v-model="book.published">
                                 </div>
                             </div>
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" v-model="book.description">
-                                </div>
-                            </div>
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Save</button>
                             </div>
@@ -73,7 +68,6 @@ export default {
                 genre:"",
                 published:null,
                 publisher:"",
-                description:""
             }
         }
     },
@@ -82,7 +76,7 @@ export default {
             await this.axios.post('/api/books',this.book).then(response=>{
                 console.log(response);
                 alert("Book has been added");
-                this.$router.push({name:"books"})
+                // this.$router.push({name:"books"})
             }).catch(error=>{
                 console.log(error)
             })

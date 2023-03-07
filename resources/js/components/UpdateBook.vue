@@ -44,12 +44,7 @@
                                     <input type="date" class="form-control" v-model="book.published">
                                 </div>
                             </div>
-                            <div class="col-12 mb-2">
-                                <div class="form-group">
-                                    <label>Description</label>
-                                    <input type="text" class="form-control" v-model="book.description">
-                                </div>
-                            </div>
+
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </div>
@@ -68,7 +63,6 @@ export default {
         return {
             book:{
                 title:"",
-                description:"",
                 title:"",
                 author:"",
                 isbn:"",
@@ -96,8 +90,9 @@ export default {
         },
         async update(){
             await this.axios.post(`/api/books/${this.$route.params.id}`,this.book).then(response=>{
-                this.$router.push({name:"books"});
-                // console.log(response);
+                alert('Book updated successfullly.');
+                // this.$router.push({name:"books"});
+                console.log(response);
             }).catch(error=>{
                 console.log(error)
             })
